@@ -211,11 +211,11 @@ function searchLichHen(){
 
 function searchRecords() {
     const searchPhone = document.getElementById('searchPhone').value.toLowerCase();
-    let filteredRecords = records.filter(record => record.phone.toLowerCase().includes(searchPhone));
+    let filteredRecords = records.filter(record => record.phone && record.phone.toLowerCase().includes(searchPhone));
     
     // Nếu không tìm thấy theo số điện thoại, tìm theo tên
     if (filteredRecords.length === 0) {
-        filteredRecords = records.filter(record => record.name.toLowerCase().includes(searchPhone));
+        filteredRecords = records.filter(record => record.name && record.name.toLowerCase().includes(searchPhone));
     }
     
     const tableBody = document.getElementById('recordTableBody');
