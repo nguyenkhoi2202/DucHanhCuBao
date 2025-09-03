@@ -224,7 +224,7 @@ function searchRecords() {
 
     const tableBody = document.getElementById('recordTableBody');
     tableBody.innerHTML = '';
-    document.getElementById('text').innerHTML = filteredRecords.length;
+    document.getElementById('texxt').innerHTML = filteredRecords.length;
 
     filteredRecords.forEach((record, index) => {
         const row = tableBody.insertRow();
