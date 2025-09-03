@@ -211,26 +211,32 @@ function searchLichHen(){
 
 function searchRecords() {
     const searchPhone = document.getElementById('searchPhone').value.toLowerCase();
-    let filteredRecords = records.filter(record => record.phone && record.phone.toLowerCase().includes(searchPhone));
-    
-    // Nếu không tìm thấy theo số điện thoại, tìm theo tên
+
+    let filteredRecords = records.filter(record => 
+        record.phone && record.phone.toLowerCase().includes(searchPhone)
+    );
+
     if (filteredRecords.length === 0) {
-        filteredRecords = records.filter(record => record.name && record.name.toLowerCase().includes(searchPhone));
+        filteredRecords = records.filter(record => 
+            record.name && record.name.toLowerCase().includes(searchPhone)
+        );
     }
-    
+
     const tableBody = document.getElementById('recordTableBody');
     tableBody.innerHTML = '';
-    document.getElementById('texxt').innerHTML = filteredRecords.length;
+    document.getElementById('text').innerHTML = filteredRecords.length;
+
     filteredRecords.forEach((record, index) => {
         const row = tableBody.insertRow();
         row.insertCell(0).textContent = index + 1;
-        row.insertCell(1).textContent = record.name;
-        row.insertCell(2).textContent = record.phone;
-        row.insertCell(3).textContent = record.address;
-        row.insertCell(4).textContent = record.dob;
-        row.insertCell(5).textContent = record.visitDate;
-        row.insertCell(6).textContent = record.appointment;
-        const actionCell = row.insertCell(6);
+        row.insertCell(1).textContent = record.name || '';
+        row.insertCell(2).textContent = record.phone || '';
+        row.insertCell(3).textContent = record.address || '';
+        row.insertCell(4).textContent = record.dob || '';
+        row.insertCell(5).textContent = record.visitDate || '';
+        row.insertCell(6).textContent = record.appointment || '';
+
+        const actionCell = row.insertCell(7);
         const editButton = document.createElement('button');
         editButton.textContent = 'Sửa';
         editButton.onclick = () => editRecord(records.indexOf(record));
